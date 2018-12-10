@@ -1,20 +1,23 @@
 {
   "name": "romulinux/favicon-generator",
   "description": "Image and html generator for favicon and app icon on your site.",
+  "type": "package",
   "version": "1.0.0",
+  "license": "mit",
   "authors": [{
     "name": "Rômulo Neves Martins",
     "email": "romulinux@gmail.com"
   }],
+  "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
       "App\\": "App"
     },
     "config": {
       "optimize-autoloader": true
-    },
-    "require": {
-      "php": ">=5.6.0"
     }
+  },
+  "require": {
+    "php": ">=5.6.0"
   }
 }
