@@ -12,9 +12,6 @@
   "autoload": {
     "psr-4": {
       "App\\": "App"
-    },
-    "config": {
-      "optimize-autoloader": true
     }
   },
   "require": {
