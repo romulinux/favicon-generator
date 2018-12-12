@@ -1,5 +1,5 @@
 <?php
-namespace App\Favicon;
+namespace Favicon;
 
 class FaviconImageGenerator extends FaviconGenerator
 {

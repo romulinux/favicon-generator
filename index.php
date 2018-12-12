@@ -1,8 +1,8 @@
 <?php
 require 'vendor/autoload.php';
 
-use App\Favicon\FaviconImageGenerator as FaviconImageGenerator;
-use App\Favicon\FaviconHtmlGenerator as FaviconHtmlGenerator;
+use Favicon\FaviconImageGenerator as FaviconImageGenerator;
+use Favicon\FaviconHtmlGenerator as FaviconHtmlGenerator;
 ?>
 <!DOCTYPE html>
 <html lang="en">

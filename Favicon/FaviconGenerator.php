@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Favicon;
+namespace Favicon;
 
 abstract class FaviconGenerator
 {
