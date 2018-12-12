@@ -18,6 +18,6 @@
     "php": ">=5.6.0"
   },
   "scripts": {
-    "start": "php -S localhost:3000 -F index.php"
+    "test": "php -S localhost:3000 -F test.php"
   }
 }

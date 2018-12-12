@@ -12,7 +12,7 @@ use Favicon\FaviconHtmlGenerator as FaviconHtmlGenerator;
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <?php
-  $applicationName = 'Site Name';
+  $applicationName = 'Test';
   $faviconDir = 'assets/icons/';
   $msapplicationTileColor = '#FFF';
   $themeColor = '#FFF';
@@ -21,7 +21,7 @@ use Favicon\FaviconHtmlGenerator as FaviconHtmlGenerator;
   echo $faviconHtmlGenerator->generate();
   ?>
 
-  <title>Site Name</title>
+  <title><?= $applicationName ?></title>
 </head>
 <body>
 <?php
