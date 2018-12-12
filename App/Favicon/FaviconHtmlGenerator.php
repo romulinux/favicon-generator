@@ -110,7 +110,7 @@ class FaviconHtmlGenerator extends FaviconGenerator
     $manifest['name'] = $this->applicationName;
     $icons = [];
     foreach ($this->android as $a) {
-      if ($a['density']) {
+      if (isset($a['density'])) {
         $icon = [];
         $width = $a['width'];
         $height = $a['height'];
