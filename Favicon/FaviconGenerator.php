@@ -58,4 +58,8 @@ abstract class FaviconGenerator
 
   public abstract function generate ();
 
+  protected function createFaviconDir($mode = 0777)
+  {
+    return is_dir($this->faviconDir) || mkdir($this->faviconDir, $mode, true);
+  }
 }

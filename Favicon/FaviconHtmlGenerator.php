@@ -96,10 +96,12 @@ class FaviconHtmlGenerator extends FaviconGenerator
 
   public function generateLinks()
   {
-    $path = $this->faviconDir;
-    self::generateManifestJson();
     $html = '';
-    $html .= '<link rel="manifest" href="'.$path.'manifest.json" />';
+    if (self::createFaviconDir()) {
+      self::generateManifestJson();
+      $path = $this->faviconDir;
+      $html .= '<link rel="manifest" href="'.$path.'manifest.json" />';
+    }
     return $html;
   }
 

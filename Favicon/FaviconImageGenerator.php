@@ -15,10 +15,12 @@ class FaviconImageGenerator extends FaviconGenerator
 
   public function generate()
   {
-    self::generateAppleFiles();
-    self::generateAppleStartupFiles();
-    self::generateMsFiles();
-    self::generateAndroidFiles();
+    if (self::createFaviconDir()) {
+      self::generateAppleFiles();
+      self::generateAppleStartupFiles();
+      self::generateMsFiles();
+      self::generateAndroidFiles();
+    }
   }
 
   private function hex2RGB($hex)
