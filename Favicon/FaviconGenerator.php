@@ -5,6 +5,7 @@ namespace Favicon;
 abstract class FaviconGenerator
 {
   protected $faviconDir;
+  protected $applicationName;
 
   protected $apple = [
     ['name' => 'apple-icon', 'rel' => 'apple-touch-icon', 'width' => 57, 'height' => 57, 'ext' => 'png', 'background' => '#FFF'],
@@ -51,8 +52,9 @@ abstract class FaviconGenerator
     ['name' => 'favicon', 'rel' => 'icon', 'type' => 'image', 'width' => 16, 'height' => 16, 'ext' => 'png', 'background' => 'transparent']
   ];
 
-  public function __construct($faviconDir = 'assets/icons/')
+  public function __construct($applicationName, $faviconDir = 'assets/icons/')
   {
+    $this->applicationName = $applicationName;
     $this->faviconDir = $faviconDir;
   }
 

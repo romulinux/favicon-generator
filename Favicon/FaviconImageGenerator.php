@@ -6,9 +6,9 @@ class FaviconImageGenerator extends FaviconGenerator
   private $faviconFilePath;
   private $appleFilePath;
 
-  public function __construct($faviconDir, $faviconFilePath, $appleFilePath)
+  public function __construct($applicationName, $faviconDir, $faviconFilePath, $appleFilePath)
   {
-    parent::__construct($faviconDir);
+    parent::__construct($applicationName, $faviconDir);
     $this->faviconFilePath = $faviconFilePath;
     $this->appleFilePath = $appleFilePath;
   }

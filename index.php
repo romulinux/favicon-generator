@@ -25,7 +25,7 @@ use Favicon\FaviconHtmlGenerator as FaviconHtmlGenerator;
 </head>
 <body>
 <?php
-  $faviconImageGenerator = new FaviconImageGenerator($faviconDir, 'assets/img/favicon.png', 'assets/img/favicon.png');
+  $faviconImageGenerator = new FaviconImageGenerator($applicationName, $faviconDir, 'assets/img/favicon.png', 'assets/img/favicon.png');
   $faviconImageGenerator->generate();
 ?>
 </body>

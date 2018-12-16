@@ -6,11 +6,10 @@ class FaviconHtmlGenerator extends FaviconGenerator
   private $msapplicationTileColor;
   private $themeColor;
   private $titleBarColor;
-  private $applicationName;
 
   public function __construct($applicationName = 'Site Name', $faviconDir = 'assets/icons/', $msapplicationTileColor = '#FFF', $themeColor = '#FFF', $titleBarColor = '#FFF')
   {
-    parent::__construct($faviconDir);
+    parent::__construct($applicationName, $faviconDir);
     $this->applicationName = $applicationName;
     $this->msapplicationTileColor = $msapplicationTileColor;
     $this->themecolor = $themeColor;
