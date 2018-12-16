@@ -3,6 +3,16 @@ require 'vendor/autoload.php';
 
 use Favicon\FaviconImageGenerator as FaviconImageGenerator;
 use Favicon\FaviconHtmlGenerator as FaviconHtmlGenerator;
+
+$applicationName = 'Test';
+$faviconDir = 'assets/icons/';
+$msapplicationTileColor = '#FFF';
+$themeColor = '#FFF';
+$titleBarColor = '#FFF';
+
+$faviconImageGenerator = new FaviconImageGenerator($applicationName, $faviconDir, 'assets/img/favicon.png', 'assets/img/favicon.png');
+$faviconImageGenerator->generate();
+$v = '?v='.date('dmYhms');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,11 +22,6 @@ use Favicon\FaviconHtmlGenerator as FaviconHtmlGenerator;
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <?php
-  $applicationName = 'Test';
-  $faviconDir = 'assets/icons/';
-  $msapplicationTileColor = '#FFF';
-  $themeColor = '#FFF';
-  $titleBarColor = '#FFF';
   $faviconHtmlGenerator = new FaviconHtmlGenerator($applicationName, $faviconDir, $msapplicationTileColor, $themeColor, $titleBarColor);
   echo $faviconHtmlGenerator->generate();
   ?>
@@ -24,9 +29,5 @@ use Favicon\FaviconHtmlGenerator as FaviconHtmlGenerator;
   <title><?= $applicationName ?></title>
 </head>
 <body>
-<?php
-  $faviconImageGenerator = new FaviconImageGenerator($applicationName, $faviconDir, 'assets/img/favicon.png', 'assets/img/favicon.png');
-  $faviconImageGenerator->generate();
-?>
 </body>
 </html>

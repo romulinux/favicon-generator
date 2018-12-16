@@ -62,7 +62,7 @@ class FaviconHtmlGenerator extends FaviconGenerator
       $height = $aSS['height'];
       $fileName = $aSS['name'].'-'.$width.'x'.$height.'.'.$aSS['ext'];
       $path = $this->faviconDir;
-      $html .= '<link href="'.$path.$fileName.'" media="'.$aSS['media'].'" rel="'.$aSS['rel'].'" />';
+      $html .= '<link href="'.$path.$fileName.$this->v.'" media="'.$aSS['media'].'" rel="'.$aSS['rel'].'" />';
     }
     return $html;
   }
@@ -75,7 +75,7 @@ class FaviconHtmlGenerator extends FaviconGenerator
       $width = $m['width'];
       $height = $m['height'];
       $fileName = $m['content'].'-'.$width.'x'.$height.'.'.$m['ext'];
-      $html .= '<meta name="'.$m['name'].'" content="'.$path.$fileName.'" />';
+      $html .= '<meta name="'.$m['name'].'" content="'.$path.$fileName.$this->v.'" />';
     }
     return $html;
   }
@@ -88,7 +88,7 @@ class FaviconHtmlGenerator extends FaviconGenerator
       $width = $a['width'];
       $height = $a['height'];
       $fileName = $a['name'].'-'.$width.'x'.$height.'.'.$a['ext'];
-      $html .= '<link rel="'.$a['rel'].'" type="'.$a['type'].'/'.$a['ext'].'" href="'.$path.$fileName.'" sizes="'.$width.'x'.$height.'" />';
+      $html .= '<link rel="'.$a['rel'].'" type="'.$a['type'].'/'.$a['ext'].'" href="'.$path.$fileName.$this->v.'" sizes="'.$width.'x'.$height.'" />';
     }
     return $html;
   }
@@ -97,7 +97,7 @@ class FaviconHtmlGenerator extends FaviconGenerator
   {
     $html = '';
     $path = $this->faviconDir;
-    $html .= '<link rel="manifest" href="'.$path.'manifest.json" />';
+    $html .= '<link rel="manifest" href="'.$path.'manifest.json'.$this->v.'" />';
     return $html;
   }
 

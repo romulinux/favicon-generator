@@ -6,6 +6,7 @@ abstract class FaviconGenerator
 {
   protected $faviconDir;
   protected $applicationName;
+  protected $v;
 
   protected $apple = [
     ['name' => 'apple-icon', 'rel' => 'apple-touch-icon', 'width' => 57, 'height' => 57, 'ext' => 'png', 'background' => '#FFF'],
@@ -56,6 +57,7 @@ abstract class FaviconGenerator
   {
     $this->applicationName = $applicationName;
     $this->faviconDir = $faviconDir;
+    $this->v = '?v='.date('dmyhms');
   }
 
   public abstract function generate ();
