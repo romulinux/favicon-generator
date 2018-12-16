@@ -97,41 +97,9 @@ class FaviconHtmlGenerator extends FaviconGenerator
   public function generateLinks()
   {
     $html = '';
-    if (self::createFaviconDir()) {
-      self::generateManifestJson();
-      $path = $this->faviconDir;
-      $html .= '<link rel="manifest" href="'.$path.'manifest.json" />';
-    }
-    return $html;
-  }
-
-  private function generateManifestJson()
-  {
     $path = $this->faviconDir;
-    $manifest = [];
-    $manifest['name'] = $this->applicationName;
-    $icons = [];
-    foreach ($this->android as $a) {
-      if (isset($a['density'])) {
-        $icon = [];
-        $width = $a['width'];
-        $height = $a['height'];
-        $sizes = $width.'x'.$height;
-        $ext = $a['ext'];
-        $density = $a['density'];
-        $fileName = $a['name'].'-'.$sizes.'.'.$ext;
-        $type = $a['type'].'/'.$ext;
-        $icon['src'] = '/'.$path.$fileName;
-        $icon['sizes'] = $sizes;
-        $icon['type'] = $type;
-        $icon['density'] = $density;
-        $icons[] = $icon;
-      }
-    }
-    $manifest['icons'] = $icons;
-    $fp = fopen($path.'manifest.json', 'w');
-    fwrite($fp, json_encode($manifest));
-    fclose($fp);
+    $html .= '<link rel="manifest" href="'.$path.'manifest.json" />';
+    return $html;
   }
 
 }

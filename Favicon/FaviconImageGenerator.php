@@ -20,6 +20,7 @@ class FaviconImageGenerator extends FaviconGenerator
       self::generateAppleStartupFiles();
       self::generateMsFiles();
       self::generateAndroidFiles();
+      self::generateManifestJson();
     }
   }
 
@@ -193,6 +194,36 @@ class FaviconImageGenerator extends FaviconGenerator
       $background = $a['background'];
       self::resizeImage($this->faviconFilePath, $this->faviconDir.$fileName, $width, $height, $background);
     }
+  }
+
+
+  private function generateManifestJson()
+  {
+    $path = $this->faviconDir;
+    $manifest = [];
+    $manifest['name'] = $this->applicationName;
+    $icons = [];
+    foreach ($this->android as $a) {
+      if (isset($a['density'])) {
+        $icon = [];
+        $width = $a['width'];
+        $height = $a['height'];
+        $sizes = $width.'x'.$height;
+        $ext = $a['ext'];
+        $density = $a['density'];
+        $fileName = $a['name'].'-'.$sizes.'.'.$ext;
+        $type = $a['type'].'/'.$ext;
+        $icon['src'] = '/'.$path.$fileName;
+        $icon['sizes'] = $sizes;
+        $icon['type'] = $type;
+        $icon['density'] = $density;
+        $icons[] = $icon;
+      }
+    }
+    $manifest['icons'] = $icons;
+    $fp = fopen($path.'manifest.json', 'w');
+    fwrite($fp, json_encode($manifest));
+    fclose($fp);
   }
 
 }
