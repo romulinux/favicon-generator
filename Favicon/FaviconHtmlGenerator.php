@@ -49,7 +49,7 @@ class FaviconHtmlGenerator extends FaviconGenerator
       $height = $ap['height'];
       $fileName = $ap['name'].'-'.$width.'x'.$height.'.'.$ap['ext'];
       $sizes = $width.'x'.$height;
-      $html .= '<link rel="'.$ap['rel'].'" sizes="'.$sizes.'" href="'.$path.$fileName.'" />';
+      $html .= '<link rel="'.$ap['rel'].'" sizes="'.$sizes.'" href="'.$path.$fileName.$this->v.'" />';
     }
     return $html;
   }
