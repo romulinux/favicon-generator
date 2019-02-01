@@ -9,8 +9,11 @@ $faviconDir = 'assets/icons/';
 $msapplicationTileColor = '#FFF';
 $themeColor = '#FFF';
 $titleBarColor = '#FFF';
+$imageForAndroid = 'assets/img/favicon.png';
+$imageForApple = 'assets/img/favicon.png';
+$appleStartupImageProportion = 80.0;
 
-$faviconImageGenerator = new FaviconImageGenerator($applicationName, $faviconDir, 'assets/img/favicon.png', 'assets/img/favicon.png');
+$faviconImageGenerator = new FaviconImageGenerator($applicationName, $faviconDir, $imageForAndroid, $imageForApple, $appleStartupImageProportion);
 $faviconImageGenerator->generate();
 $v = '?v='.date('dmYhms');
 ?>

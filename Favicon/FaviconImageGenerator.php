@@ -5,21 +5,23 @@ class FaviconImageGenerator extends FaviconGenerator
 {
   private $faviconFilePath;
   private $appleFilePath;
+  private $appleStartupImageProportion;
 
-  public function __construct($applicationName, $faviconDir, $faviconFilePath, $appleFilePath)
+  public function __construct($applicationName, $faviconDir, $faviconFilePath, $appleFilePath, $appleStartupImageProportion = 20.0)
   {
     parent::__construct($applicationName, $faviconDir);
     $this->faviconFilePath = $faviconFilePath;
     $this->appleFilePath = $appleFilePath;
+    $this->appleStartupImageProportion = $appleStartupImageProportion;
   }
 
   public function generate()
   {
     if (self::createFaviconDir()) {
-      self::generateAppleFiles();
-      self::generateAppleStartupFiles();
-      self::generateMsFiles();
-      self::generateAndroidFiles();
+      self::generateAppleImages();
+      self::generateAppleStartupImages($this->appleStartupImageProportion);
+      self::generateMsImages();
+      self::generateAndroidImages();
       self::generateManifestJson();
     }
   }
@@ -44,28 +46,28 @@ class FaviconImageGenerator extends FaviconGenerator
   {
     $n_r = $n_w / $n_h;
     $o_r = $o_w / $o_h;
-    if ($n_r >= 1) { // horizontal dest
-      if ($o_r >= 1) { // horizontal source
-        if ($n_r >= $o_r) { // wider source
+    if ($n_r >= 1) {
+      if ($o_r >= 1) {
+        if ($n_r >= $o_r) {
           $w = $o_w / ($o_h / $n_h);
           $h = $n_h;
-        } else { // taller source
+        } else {
           $w = $n_w;
           $h = $o_h / ($o_w / $n_w);
         }
-      } else { // vertical source
+      } else {
         $w = $o_w / ($o_h / $n_h);
         $h = $n_h;
       }
-    } else { // vertical dest
-      if ($o_r >= 1) { // horizontal source
+    } else {
+      if ($o_r >= 1) { 
         $w = $n_w;
         $h = $o_h / ($o_w / $n_w);
-      } else { // vertical source
-        if ($n_r >= $o_r) { // wider source
+      } else {
+        if ($n_r >= $o_r) {
           $w = $o_w / ($o_h / $n_h);
           $h = $n_h;
-        } else { // taller source
+        } else {
           $w = $n_w;
           $h = $o_h / ($o_w / $n_w);
         }
@@ -76,6 +78,11 @@ class FaviconImageGenerator extends FaviconGenerator
 
   public function resizeImage($source, $target, $newWidth, $newheight, $background = 'transparent', $proportion = 100.0)
   {
+    echo 'proportion '.$proportion.'<br><hr>';
+    if (!file_exists($source)) {
+      return false;
+    }
+
     if (preg_match('/#([a-f0-9]{3}){1,2}\b/i', $background)) {
       $background = self::hex2RGB($background);
     }
@@ -145,7 +152,7 @@ class FaviconImageGenerator extends FaviconGenerator
     return $newImage;
   }
 
-  public function generateAppleFiles()
+  public function generateAppleImages()
   {
     foreach ($this->apple as $ap) {
       $width = $ap['width'];
@@ -159,20 +166,22 @@ class FaviconImageGenerator extends FaviconGenerator
     self::resizeImage($this->faviconFilePath, $this->faviconDir.'apple-icon-precomposed', 192, 192, $background);
   }
   
-  public function generateAppleStartupFiles($proportion = 20.0)
+  public function generateAppleStartupImages($proportion)
   {
+    echo 'function '.__FUNCTION__.'<br><hr>';
     foreach ($this->appleStartupScreens as $ap) {
       $width = $ap['width'];
       $height = $ap['height'];
       $extensao = $ap['ext'];
       $fileName = $ap['name'].'-'.$width.'x'.$height;
       $background = $ap['background'];
-      $proportion = $ap['proportion'];
+      $proportion = $proportion ?? $ap['proportion'];
       self::resizeImage($this->appleFilePath, $this->faviconDir.$fileName, $width, $height, $background, $proportion);
     }
+    echo 'end of function '.__FUNCTION__.'<br><hr>';
   }
   
-  public function generateMsFiles()
+  public function generateMsImages()
   {
     foreach ($this->ms as $m) {
       $width = $m['width'];
@@ -184,7 +193,7 @@ class FaviconImageGenerator extends FaviconGenerator
     }
   }
   
-  public function generateAndroidFiles()
+  public function generateAndroidImages()
   {
     foreach ($this->android as $a) {
       $width = $a['width'];
@@ -224,6 +233,16 @@ class FaviconImageGenerator extends FaviconGenerator
     $fp = fopen($path.'manifest.json', 'w');
     fwrite($fp, json_encode($manifest));
     fclose($fp);
+  }
+
+  public function setAppleStartupImageProportion($appleStartupImageProportion)
+  {
+    $this->appleStartupImageProportion = $appleStartupImageProportion;
+  }
+
+  public function getAppleStartupImageProportion ()
+  {
+    return $this->appleStartupImageProportion;
   }
 
 }
