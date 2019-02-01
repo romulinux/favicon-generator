@@ -78,7 +78,6 @@ class FaviconImageGenerator extends FaviconGenerator
 
   public function resizeImage($source, $target, $newWidth, $newheight, $background = 'transparent', $proportion = 100.0)
   {
-    echo 'proportion '.$proportion.'<br><hr>';
     if (!file_exists($source)) {
       return false;
     }
@@ -168,7 +167,6 @@ class FaviconImageGenerator extends FaviconGenerator
   
   public function generateAppleStartupImages($proportion)
   {
-    echo 'function '.__FUNCTION__.'<br><hr>';
     foreach ($this->appleStartupScreens as $ap) {
       $width = $ap['width'];
       $height = $ap['height'];
@@ -178,7 +176,6 @@ class FaviconImageGenerator extends FaviconGenerator
       $proportion = $proportion ?? $ap['proportion'];
       self::resizeImage($this->appleFilePath, $this->faviconDir.$fileName, $width, $height, $background, $proportion);
     }
-    echo 'end of function '.__FUNCTION__.'<br><hr>';
   }
   
   public function generateMsImages()

@@ -2,7 +2,7 @@
   "name": "romulinux/favicon-generator",
   "description": "Image and html generator for favicon and app icon on your site.",
   "type": "package",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "mit",
   "authors": [{
     "name": "Rômulo Neves Martins",
