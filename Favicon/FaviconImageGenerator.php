@@ -142,7 +142,7 @@ class FaviconImageGenerator extends FaviconGenerator
       imagesavealpha($myImage, true);
     }
 
-    imagecopyresampled($newImage, $myImage, (($newWidth / 2)- ($x_mid)), (($newheight / 2) - $y_mid), 0, 0, $new_width, $new_height, $widthOrig, $heightOrig);
+    imagecopyresampled($newImage, $myImage, (int)(($newWidth / 2)- ($x_mid)), (int)(($newheight / 2) - $y_mid), 0, 0, $new_width, $new_height, $widthOrig, $heightOrig);
 
     imagedestroy($myImage);
 
